@@ -16,6 +16,7 @@
         vm.productToAdd = {};
 
         vm.addProduct = addProduct;
+
         activate();
 
         ////////////////
