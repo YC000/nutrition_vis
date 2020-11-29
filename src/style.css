@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+
+    /*TODO: remove (for demo purposes only) */
+    background: #f2f2f2;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+}
+
+.column-one {
+    flex: 0 0 30%;
+    order: 1;
+}
+.column-two {
+    order: 2;
+}

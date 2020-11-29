@@ -1,17 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
     <meta charset="UTF-8">
     <title>Nutrition</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body ng-app = "myapp">
+<body ng-app = "myapp" ng-controller="NutritionController as vm">
     <script src="js/app.js" type="application/javascript"></script>
 
     <script src="js/NutritionController.js" type="application/javascript"></script>
+    <script src="js/DataFactory.js" type="application/javascript"></script>
 
-    <div ng-controller="NutritionController as vm">
+    <div>
         <h2>Welcome {{vm.title}} to the world!</h2>
+    </div>
+    <div class="container">
+        <!-- product context, image and adding product -->
+        <div class="column column-one">
+            <div>
+                <div ng-repeat="product in vm.chosenProduct">
+                    <!-- product context -->
+                    <p>{{product.categoryName}}/{{product.subcategoryName}}/{{product.productName}}</p>
+                    <h2>{{product.productName}}</h2>
+                    <p>{{product.description}}</p>
+                    <!-- product image -->
+                    <img src="{{product.imageURI}}" style="max-width:60%;">
+                    <hr>
+                </div>
+            </div>
+
+            <br>
+
+            <!-- add product -->
+            <form name="addProduct" id="addProduct">
+                <label for="selectProduct">
+                    Add Product:
+                </label>
+                <select name="selectProduct" id="selectProduct"
+                        ng-model="vm.productToAdd"
+                        ng-options="product.productName for product in vm.availableProduct">
+                </select>
+                <br>
+                <input type="submit" value="Add" ng-click="vm.addProduct()">
+            </form>
+        </div>
+
+        <!-- serving and nutrition -->
+        <div class="column column-two">Column two
+        </div>
     </div>
 
 </body>
