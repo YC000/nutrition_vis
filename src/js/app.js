@@ -1,3 +1,3 @@
 (function(){
-    var module = angular.module('myapp', []);
+    var module = angular.module('myapp', ['rzSlider']);
 })();

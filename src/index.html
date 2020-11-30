@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>Nutrition</title>
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+    <script src="./../node_modules/angularjs-slider/dist/rzslider.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./../node_modules/angularjs-slider/dist/rzslider.css"/>
+
 </head>
 <body ng-app = "myapp" ng-controller="NutritionController as vm">
     <script src="js/app.js" type="application/javascript"></script>
-
     <script src="js/NutritionController.js" type="application/javascript"></script>
     <script src="js/DataFactory.js" type="application/javascript"></script>
 
@@ -18,14 +20,14 @@
     <div class="container">
         <!-- product context, image and adding product -->
         <div class="column column-one">
-            <div>
-                <div ng-repeat="product in vm.chosenProduct">
+            <div ng-if="vm.chosenProduct.length > 0;">
+                <div ng-repeat="product in vm.chosenProduct track by $index">
                     <!-- product context -->
                     <p>{{product.categoryName}}/{{product.subcategoryName}}/{{product.productName}}</p>
                     <h2>{{product.productName}}</h2>
                     <p>{{product.description}}</p>
                     <!-- product image -->
-                    <img src="{{product.imageURI}}" style="max-width:60%;">
+                    <img ng-src="{{product.imageURI}}" style="max-width:60%;">
                     <hr>
                 </div>
             </div>
@@ -44,10 +46,21 @@
                 <br>
                 <input type="submit" value="Add" ng-click="vm.addProduct()">
             </form>
+
         </div>
 
         <!-- serving and nutrition -->
-        <div class="column column-two">Column two
+        <div class="column column-two">
+            <h2>Nutrition Information</h2>
+            <!-- serving -->
+            <div ng-repeat="product in vm.chosenProduct track by $index">
+                <div ng-init="vm.setSlider(product, $index);">
+                    <p><b>{{product.productName}}</b> Serving Size: {{vm.sliders[$index].value}} {{product.sizes[0].unit}}</p>
+                    <rzslider style="max-width: 90%" rz-slider-model="vm.sliders[$index].value"
+                              rz-slider-options="vm.sliders[$index].options"></rzslider>
+                </div>
+                <br>
+            </div>
         </div>
     </div>
 

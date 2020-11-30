@@ -17,4 +17,9 @@
 }
 .column-two {
     order: 2;
+    text-align: center;
+}
+
+.body {
+    margin: 5%
 }
