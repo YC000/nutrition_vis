@@ -13,6 +13,7 @@
     <script src="js/app.js" type="application/javascript"></script>
     <script src="js/NutritionController.js" type="application/javascript"></script>
     <script src="js/DataFactory.js" type="application/javascript"></script>
+    <script src="js/filter.js" type="application/javascript"></script>
 
     <div>
         <h2>Welcome {{vm.title}} to the world!</h2>
@@ -56,10 +57,18 @@
             <div ng-repeat="product in vm.chosenProduct track by $index">
                 <div ng-init="vm.setSlider(product, $index);">
                     <p><b>{{product.productName}}</b> Serving Size: {{vm.sliders[$index].value}} {{product.sizes[0].unit}}</p>
+                    <span style="color: black;">&#9724; {{product.productName|ellipsis:30}}</span>
+                    <span style="color: transparent; text-shadow: 0 0 0 #0277BD;">&#9724; {{product.categoryName|ellipsis:30}}</span>
+                    <span style="color: transparent; text-shadow: 0 0 0 #29B6F6;">&#9724; {{product.subcategoryName|ellipsis:30}}</span>
                     <rzslider style="max-width: 90%" rz-slider-model="vm.sliders[$index].value"
                               rz-slider-options="vm.sliders[$index].options"></rzslider>
                 </div>
                 <br>
+            </div>
+
+            <!-- nutrition category label -->
+            <div ng-repeat="product in vm.chosenProduct track by $index">
+
             </div>
         </div>
     </div>
