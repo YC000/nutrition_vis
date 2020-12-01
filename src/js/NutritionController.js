@@ -35,8 +35,10 @@
         }
 
         function addProduct() {
-            vm.chosenProduct.push(vm.productToAdd);
-            vm.productToAdd = {};
+            if (vm.productToAdd.hasOwnProperty('productName')) {
+                vm.chosenProduct.push(vm.productToAdd);
+                vm.productToAdd = {};
+            }
         }
 
         function setSlider(product, chosenProductIdx) {

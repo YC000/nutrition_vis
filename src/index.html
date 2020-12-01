@@ -2,25 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nutrition</title>
-    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
     <script src="./../node_modules/angularjs-slider/dist/rzslider.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="./../node_modules/angularjs-slider/dist/rzslider.css"/>
 
-</head>
-<body ng-app = "myapp" ng-controller="NutritionController as vm">
-    <script src="js/app.js" type="application/javascript"></script>
-    <script src="js/NutritionController.js" type="application/javascript"></script>
-    <script src="js/DataFactory.js" type="application/javascript"></script>
-    <script src="js/filter.js" type="application/javascript"></script>
+    <title>Nutrition</title>
 
-    <div>
-        <h2>Welcome {{vm.title}} to the world!</h2>
-    </div>
-    <div class="container">
+</head>
+<body ng-app="myapp" ng-controller="NutritionController as vm">
+<script src="js/app.js" type="application/javascript"></script>
+<script src="js/NutritionController.js" type="application/javascript"></script>
+<script src="js/DataFactory.js" type="application/javascript"></script>
+<script src="js/filter.js" type="application/javascript"></script>
+
+<div>
+    <h2>Welcome {{vm.title}} to the world!</h2>
+</div>
+<br>
+<div class="container-fluid">
+    <div class="row">
         <!-- product context, image and adding product -->
-        <div class="column column-one">
+        <div class="col-sm-5">
             <div ng-if="vm.chosenProduct.length > 0;">
                 <div ng-repeat="product in vm.chosenProduct track by $index">
                     <!-- product context -->
@@ -51,12 +60,13 @@
         </div>
 
         <!-- serving and nutrition -->
-        <div class="column column-two">
+        <div class="col-sm-7 nutrition" style="text-align: center;">
             <h2>Nutrition Information</h2>
             <!-- serving -->
             <div ng-repeat="product in vm.chosenProduct track by $index">
                 <div ng-init="vm.setSlider(product, $index);">
-                    <p><b>{{product.productName}}</b> Serving Size: {{vm.sliders[$index].value}} {{product.sizes[0].unit}}</p>
+                    <p><b>Product {{$index + 1}} ({{product.productName}})</b> Serving Size:
+                        {{vm.sliders[$index].value}} {{product.sizes[0].unit}}</p>
                     <span style="color: black;">&#9724; {{product.productName|ellipsis:30}}</span>
                     <span style="color: transparent; text-shadow: 0 0 0 #0277BD;">&#9724; {{product.categoryName|ellipsis:30}}</span>
                     <span style="color: transparent; text-shadow: 0 0 0 #29B6F6;">&#9724; {{product.subcategoryName|ellipsis:30}}</span>
@@ -66,12 +76,25 @@
                 <br>
             </div>
 
+            <br>
+
             <!-- nutrition category label -->
             <div ng-repeat="product in vm.chosenProduct track by $index">
 
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-3 bg-warning">
+                            <span>Calories</span>
+                        </div>
+                        <div class="col-sm-9 bg-danger">
+                            asdfadddddddddddddddddddddddddd
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
 </body>
 </html>
