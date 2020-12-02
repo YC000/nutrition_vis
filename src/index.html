@@ -95,7 +95,9 @@
                 <div ng-repeat="nutrient in vm.chosenProduct[0].sizeChosen.nutrition track by $index">
                     <div class="row" ng-repeat="product in vm.chosenProduct track by $index">
                         <div class="col-sm-2">
-                            <span ng-style="$index > 0 ? {'color':'gray'} : {'color':'#212529'}" >{{nutrient.displayName}} {{vm.getProductNb($index)}}</span>
+                            <span ng-if="$index === 0"><b>{{nutrient.displayName}}</b></span>
+                            <br ng-if="$index !== 0">
+                            <span style="color: gray;" ng-if="vm.chosenProduct.length > 1">{{product.productName|ellipsis:13}}</span>
                         </div>
                         <div class="col-sm-9">
                             <rzslider class="custom-slider" rz-slider-model="vm.nutritionSlider[$index][$parent.$index].value"

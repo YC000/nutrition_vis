@@ -172,9 +172,9 @@
             return "";
         }
 
-        function getProductNb(prod_i) {
+        function getProductNb(product, prod_i) {
             if (vm.chosenProduct.length > 1) {
-                return `(product ${prod_i + 1})`;
+                return product.productName;
             }
 
             return "";
