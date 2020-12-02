@@ -111,8 +111,42 @@
                     let subcatMax = subcatNut[nut.id].maxValue;
 
                     // color scale for range
-                    let subcatColor = "#0277BD";
-                    let catColor = "#29B6F6";
+                    // dividing color follows: https://www.canada.ca/en/health-canada/services/understanding-food-labels/percent-daily-value.html
+                    let [catColor, subcatColor] = getColor('blue');
+                    let percent;
+
+                    if (nut.id !== 'calories') {
+
+                        if (nut.id === 'transFat') {
+                            // if transFat, use the % for saturated fat
+                            percent = product.sizeChosen.nutrition[nut_i-1].dailyPercentValue;
+                        } else if (!nut.hasOwnProperty("dailyPercentValue") || nut.dailyPercentValue === null) {
+                            percent = nut.value / ceil;
+                        } else {
+                            percent = nut.dailyPercentValue;
+                        }
+
+                        if (percent < 0.05) {
+                            if (nut.id === 'dietaryFiber' || nut.id === 'protein') {
+                                // bad, i.e. red
+                                [catColor, subcatColor] = getColor('red');
+                            } else {
+                                // low, i.e. green
+                                [catColor, subcatColor] = getColor('green');
+                            }
+                        } else if (percent < 0.15) {
+                            // medium, i.e. yellow
+                            [catColor, subcatColor] = getColor('amber');
+                        } else {
+                            if (nut.id === 'dietaryFiber' || nut.id === 'protein') {
+                                // good, i.e. green
+                                [catColor, subcatColor] = getColor('green');
+                            } else {
+                                // high, i.e. red
+                                [catColor, subcatColor] = getColor('red');
+                            }
+                        }
+                    }
 
                     // slider visualization
                     vm.nutritionSlider[product_i][nut_i] =  {
@@ -145,6 +179,19 @@
                     };
                 })
             })
+        }
+
+        function getColor(colorName) {
+            switch (colorName) {
+                case 'red':
+                    return ["#EF5350", "#C62828"];
+                case 'green':
+                    return ["#66BB6A", "#2E7D32"];
+                case 'amber':
+                    return ["#FFCA28", "#FF8F00"];
+                default:
+                    return ["#29B6F6", "#0277BD"];
+            }
         }
 
         function getTickStep(ceil) {
@@ -183,10 +230,12 @@
                 case "dietaryFiber":
                     return [0, 25];
                 case "sugars":
+                    // range: https://www.heartandstroke.ca/healthy-living/healthy-eating/reduce-sugar
                     return [0, 50];
                 case "protein":
                     return [0, 50];
                 case "caffeine":
+                    // range: https://www.canada.ca/en/health-canada/services/food-nutrition/food-safety/food-additives/caffeine-foods/foods.html
                     return [0, 400];
                 default:
                     // assume it to be calories
