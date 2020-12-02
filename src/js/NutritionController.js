@@ -88,6 +88,16 @@
 
                     let [floor, ceil] = getNutritionRange(el.id);
 
+                    // make the ticks color smooth
+                    let step = 1;
+                    if (ceil < 5) {
+                        step = 0.01;
+                    } else if (ceil < 50) {
+                        step = 0.1;
+                    } else if (ceil < 100) {
+                        step = 0.5;
+                    }
+
                     vm.nutritionSlider[product_i][nut_i] =  {
                         value: el.value,
                         options: {
@@ -95,6 +105,7 @@
                             floor: floor,
                             showTicks: true,
                             readOnly: true,
+                            step: step,
                             translate: function(value, sliderId, label) {
                                 switch (label) {
                                     case 'model':
