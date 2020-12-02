@@ -91,17 +91,19 @@
                     </div>
                 </div>
 
+
                 <div ng-repeat="nutrient in vm.chosenProduct[0].sizeChosen.nutrition track by $index">
                     <div class="row" ng-repeat="product in vm.chosenProduct track by $index">
                         <div class="col-sm-2">
-                            <span>{{nutrient.displayName}} (product {{$index + 1}})</span>
+                            <span ng-style="$index > 0 ? {'color':'gray'} : {'color':'#212529'}" >{{nutrient.displayName}} {{vm.getProductNb($index)}}</span>
                         </div>
                         <div class="col-sm-9">
                             <rzslider class="custom-slider" rz-slider-model="vm.nutritionSlider[$index][$parent.$index].value"
                                       rz-slider-options="vm.nutritionSlider[$index][$parent.$index].options"></rzslider>
-
                         </div>
                         <div class="col-sm-1">
+                            <br>
+                            <span>{{vm.setDailyPercent(product, $parent.$index)}}</span>
                         </div>
 
                     </div>

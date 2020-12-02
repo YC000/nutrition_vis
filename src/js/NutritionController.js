@@ -19,7 +19,8 @@
 
         vm.addProduct = addProduct;
         vm.setSlider = setSlider;
-        vm.setNutrition = setNutrition;
+        vm.setDailyPercent = setDailyPercent;
+        vm.getProductNb = getProductNb;
 
         activate();
 
@@ -151,8 +152,21 @@
             }
         }
 
-        function setNutrition() {
+        function setDailyPercent(product, nut_i) {
+            if (product.sizeChosen.nutrition[nut_i].hasOwnProperty('dailyPercentValue')
+                && product.sizeChosen.nutrition[nut_i].dailyPercentValue !== null) {
+                let percent = Math.round(product.sizeChosen.nutrition[nut_i].dailyPercentValue * 100 * 10) / 10
+                return `${percent}%`;
+            }
+            return "";
+        }
 
+        function getProductNb(prod_i) {
+            if (vm.chosenProduct.length > 1) {
+                return `(product ${prod_i + 1})`;
+            }
+
+            return "";
         }
     }
 
