@@ -32,12 +32,13 @@
         }
 
         function getAvailableProduct() {
-            return DataFactory.products;
+            return Object.assign([], DataFactory.products);
         }
 
         function addProduct() {
             if (vm.productToAdd.hasOwnProperty('productName')) {
                 vm.chosenProduct.push(vm.productToAdd);
+                vm.availableProduct = vm.availableProduct.filter(el => el.productName !== vm.productToAdd.productName);
                 vm.productToAdd = {};
             }
         }
