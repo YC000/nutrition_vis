@@ -24,8 +24,24 @@ body {
 }
 
 .nutrition {
-    /*TODO: remove (for demo purposes only) */
     background: #f2f2f2;
     border: 1px solid #e6e6e6;
     box-sizing: border-box;
+}
+.custom-slider.rzslider .rz-pointer {
+    width: 8px;
+    height: 16px;
+    top: auto; /* to remove the default positioning */
+    bottom: 0;
+    background-color: #333;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.custom-slider.rzslider .rz-pointer:after {
+    display: none;
+}
+
+.custom-slider.rzslider .rz-bubble {
+    bottom: 14px;
 }

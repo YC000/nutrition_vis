@@ -14,19 +14,22 @@
             "category": {
                 "Blended Beverages": {
                     "categoryName": "Blended Beverages",
-                    "meta": {}
+                    "meta": {},
+                    "productCount": 0
                 }
             },
             "subcategory": {
                 "Coffee Frappuccino": {
                     "subcategoryName": "Coffee Frappuccino",
                     "categoryName": "Blended Beverages",
-                    "meta": {}
+                    "meta": {},
+                    "productCount": 0
                 },
                 "Creme Frappuccino": {
                     "subcategoryName": "Creme Frappuccino",
                     "categoryName": "Blended Beverages",
-                    "meta": {}
+                    "meta": {},
+                    "productCount": 0
                 }
             },
             "products": [
@@ -2362,7 +2365,15 @@
                     ]
                 }
             ]
-        };
+        }
+
+
+        data.products.forEach(product => {
+            if (product.hasOwnProperty('categoryName') && data.category.hasOwnProperty(product.categoryName)
+                && product.hasOwnProperty('subcategoryName') && data.subcategory.hasOwnProperty(product.subcategoryName)) {
+                // TODO: add meta
+            }
+        })
 
         return data;
     }

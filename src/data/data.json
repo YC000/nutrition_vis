@@ -2,19 +2,22 @@
   "category": {
     "Blended Beverages": {
       "categoryName": "Blended Beverages",
-      "meta": {}
+      "meta": {},
+      "productCount": 0
     }
   },
   "subcategory": {
     "Coffee Frappuccino": {
       "subcategoryName": "Coffee Frappuccino",
       "categoryName": "Blended Beverages",
-      "meta": {}
+      "meta": {},
+      "productCount": 0
     },
     "Creme Frappuccino": {
       "subcategoryName": "Creme Frappuccino",
       "categoryName": "Blended Beverages",
-      "meta": {}
+      "meta": {},
+      "productCount": 0
     }
   },
   "products": [

@@ -47,7 +47,7 @@
             <!-- add product -->
             <form name="addProduct" id="addProduct">
                 <label for="selectProduct">
-                    Add Product:
+                    <b>Add Product:</b>
                 </label>
                 <select name="selectProduct" id="selectProduct"
                         ng-model="vm.productToAdd"
@@ -79,19 +79,35 @@
             <br>
 
             <!-- nutrition category label -->
-            <div ng-repeat="product in vm.chosenProduct track by $index">
+            <div class="container-fluid" ng-if="vm.chosenProduct.length > 0;">
+                <div class="row">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-9">
+                        <p style="text-align: right; color: gray;">Recommended DV</p>
+                    </div>
+                    <div class="col-sm-1">
+                        <p style="text-align: center; color: gray;">%DV</p>
+                    </div>
+                </div>
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-3 bg-warning">
-                            <span>Calories</span>
+                <div ng-repeat="nutrient in vm.chosenProduct[0].sizeChosen.nutrition track by $index">
+                    <div class="row" ng-repeat="product in vm.chosenProduct track by $index">
+                        <div class="col-sm-2">
+                            <span>{{nutrient.displayName}} (product {{$index + 1}})</span>
                         </div>
-                        <div class="col-sm-9 bg-danger">
-                            asdfadddddddddddddddddddddddddd
+                        <div class="col-sm-9">
+                            <rzslider class="custom-slider" rz-slider-model="vm.nutritionSlider[$index][$parent.$index].value"
+                                      rz-slider-options="vm.nutritionSlider[$index][$parent.$index].options"></rzslider>
+
                         </div>
+                        <div class="col-sm-1">
+                        </div>
+
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
