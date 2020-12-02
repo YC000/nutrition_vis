@@ -53,3 +53,41 @@ body {
     background: #ffe4d1;
     top: -1px;
 }
+
+.custom-slider2.rzslider .rz-tick {
+    width: 10px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #ffe4d1;
+    top: -1px;
+}
+
+.custom-slider2.rzslider .rz-bubble {
+    bottom: 14px;
+}
+
+.custom-slider2.rzslider .rz-pointer-min{
+    width: 8px;
+    height: 16px;
+    top: auto; /* to remove the default positioning */
+    bottom: 0;
+    background-color: #333;
+    /*border-top-left-radius: 3px;*/
+    /*border-top-right-radius: 3px;*/
+}
+
+.custom-slider2.rzslider .rz-pointer-max {
+    bottom: 0;
+    top: auto;
+    background-color: #333;
+    /*border-top-left-radius: 7px;*/
+    /*border-top-right-radius: 7px;*/
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+}
+
+.custom-slider2.rzslider .rz-pointer:after {
+    display: none;
+}

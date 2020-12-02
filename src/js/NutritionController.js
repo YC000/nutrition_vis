@@ -16,6 +16,17 @@
         vm.productToAdd = {};
         vm.sliders = [];
         vm.nutritionSlider = [];
+        vm.graphType = "categoryCompare";
+        vm.nutritionSliderItem = [{
+            minVal: 10,
+            maxVal: 20,
+            options: {
+                floor: 0,
+                ceil: 100,
+                step: 10,
+                showTicks: true
+            }
+        }];
 
         vm.addProduct = addProduct;
         vm.setSlider = setSlider;
@@ -75,6 +86,30 @@
             });
 
             setNutritionSlider();
+            setNutritionItemSlider();
+        }
+
+        function setNutritionItemSlider() {
+            // set product nutrient visualization
+            vm.chosenProduct[0].sizeChosen.nutrition.forEach((nut, nut_i) => {
+
+                if (vm.nutritionSliderItem[nut_i] === undefined) {
+                    vm.nutritionSliderItem[nut_i] = {};
+                }
+
+                // get the max value possible for each nutrient
+                let [floor, ceil] = getNutritionRange(nut.id);
+
+                vm.nutritionSliderItem[nut_i] = {
+                    minVal: nut.value,
+                    maxVal: vm.chosenProduct[1].sizeChosen.nutrition[nut_i].value,
+                    options: {
+                        floor: floor,
+                        ceil: ceil
+                    }
+                };
+            })
+
         }
 
         function setNutritionSlider() {

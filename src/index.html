@@ -21,6 +21,8 @@
 <script src="js/NutritionController.js" type="application/javascript"></script>
 <script src="js/DataFactory.js" type="application/javascript"></script>
 <script src="js/filter.js" type="application/javascript"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
 
 <div>
     <h2>Welcome!</h2>
@@ -68,21 +70,34 @@
                     <p><b>Product {{$index + 1}} ({{product.productName}})</b> Serving Size:
                         {{vm.sliders[$index].value}} {{product.sizes[0].unit}}</p>
 
-                    <!-- color context for graph -->
-                    <span style="color: black;">&#9724; {{product.productName|ellipsis:30}}</span>
-                    <span style="color: transparent; text-shadow: 0 0 0 #0277BD;">&#9724; {{product.subcategoryName|ellipsis:30}}</span>
-                    <span style="color: transparent; text-shadow: 0 0 0 #29B6F6;">&#9724; {{product.categoryName|ellipsis:30}}</span>
-
                     <rzslider style="max-width: 90%" rz-slider-model="vm.sliders[$index].value"
                               rz-slider-options="vm.sliders[$index].options"></rzslider>
                 </div>
                 <br>
+                <div ng-show="vm.graphType === 'categoryCompare'">
+                    <!-- color context for graph -->
+                    <span style="color: black;">&#9724; {{product.productName|ellipsis:30}}</span>
+                    <span style="color: transparent; text-shadow: 0 0 0 #0277BD;">&#9724; {{product.subcategoryName|ellipsis:30}}</span>
+                    <span style="color: transparent; text-shadow: 0 0 0 #29B6F6;">&#9724; {{product.categoryName|ellipsis:30}}</span>
+                </div>
+                <br>
             </div>
 
-            <br>
+            <div ng-if="vm.chosenProduct.length > 1;">
+                <form name="modifyGraph">
+                    <label>
+                        <input type="radio" ng-model="vm.graphType" value="categoryCompare">
+                        Compare within category
+                    </label>
+                    <label>
+                        <input type="radio" ng-model="vm.graphType" value="itemCompare">
+                        Compare between items
+                    </label>
+                </form>
+            </div>
 
             <!-- nutrition category label -->
-            <div class="container-fluid" ng-if="vm.chosenProduct.length > 0;">
+            <div class="container-fluid" ng-show="vm.chosenProduct.length > 0 && vm.graphType === 'categoryCompare';">
                 <div class="row">
                     <div class="col-sm-2">
                     </div>
@@ -93,7 +108,6 @@
                         <p style="text-align: center; color: gray;">%DV</p>
                     </div>
                 </div>
-
 
                 <div ng-repeat="nutrient in vm.chosenProduct[0].sizeChosen.nutrition track by $index">
                     <div class="row" ng-repeat="product in vm.chosenProduct track by $index">
@@ -109,6 +123,41 @@
                         <div class="col-sm-1">
                             <br>
                             <span>{{vm.setDailyPercent(product, $parent.$index)}}</span>
+                        </div>
+                    </div>
+                    <hr ng-if="nutrient.id !=='saturatedFat'">
+                </div>
+            </div>
+
+            <!-- nutrition item label -->
+            <div class="container-fluid" ng-show="vm.chosenProduct.length > 0 && vm.graphType !== 'categoryCompare';">
+                <div class="row">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-9">
+                        <p style="text-align: right; color: gray;">Recommended DV</p>
+                    </div>
+                    <div class="col-sm-1">
+                        <p style="text-align: center; color: gray;">%DV</p>
+                    </div>
+                </div>
+
+                <div ng-repeat="nutrient in vm.chosenProduct[0].sizeChosen.nutrition track by $index">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <span ng-if="$index === 0"><b>{{nutrient.displayName}}</b></span>
+                            <br ng-if="$index !== 0">
+                            <span style="color: gray;" ng-if="vm.chosenProduct.length > 1">{{product.productName|ellipsis:13}}</span>
+                        </div>
+                        <div class="col-sm-9">
+                            <rzslider class="custom-slider2"
+                                      rz-slider-model="vm.nutritionSliderItem[$index].minValue"
+                                      rz-slider-high="vm.nutritionSliderItem[$index].maxValue"
+                                      rz-slider-options="vm.nutritionSliderItem[$index].options"></rzslider>
+                        </div>
+                        <div class="col-sm-1">
+<!--                            <br>-->
+<!--                            <span>{{vm.setDailyPercent(product, $parent.$index)}}</span>-->
                         </div>
                     </div>
                     <hr ng-if="nutrient.id !=='saturatedFat'">
