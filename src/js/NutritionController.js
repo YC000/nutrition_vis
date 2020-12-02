@@ -29,8 +29,6 @@
         function activate() {
             vm.availableProduct = getAvailableProduct();
             console.log(DataFactory);
-            console.log(vm.availableProduct);
-            console.log(vm.productToAdd);
         }
 
         function getAvailableProduct() {
@@ -80,54 +78,87 @@
 
         function setNutritionSlider() {
             vm.chosenProduct.forEach((product, product_i) => {
-                product.sizeChosen.nutrition.forEach((el, nut_i) => {
+                // determine the range of category
+                let categoryNut = {};
+                DataFactory.category[product.categoryName].meta.sizes.forEach(size => {
+                    if (size.value === product.sizeChosen.value) {
+                        categoryNut = size;
+                    }
+                })
+
+                // determine the range of subCategory
+                let subcatNut = {};
+                DataFactory.subcategory[product.subcategoryName].meta.sizes.forEach(size => {
+                    if (size.value === product.sizeChosen.value) {
+                        subcatNut = size;
+                    }
+                })
+
+                // set product nutrient visualization
+                product.sizeChosen.nutrition.forEach((nut, nut_i) => {
 
                     if (vm.nutritionSlider[product_i] === undefined) {
                         vm.nutritionSlider[product_i] = [];
                     }
 
-                    let [floor, ceil] = getNutritionRange(el.id);
+                    // get the max value possible for each nutrient
+                    let [floor, ceil] = getNutritionRange(nut.id);
 
-                    // make the ticks color smooth
-                    let step = 1;
-                    if (ceil < 5) {
-                        step = 0.01;
-                    } else if (ceil < 50) {
-                        step = 0.1;
-                    } else if (ceil < 100) {
-                        step = 0.5;
-                    }
+                    // get category and sub category ranges
+                    let catMin = categoryNut[nut.id].minValue;
+                    let catMax = categoryNut[nut.id].maxValue;
+                    let subcatMin = subcatNut[nut.id].minValue;
+                    let subcatMax = subcatNut[nut.id].maxValue;
 
+                    // color scale for range
+                    let subcatColor = "#0277BD";
+                    let catColor = "#29B6F6";
+
+                    // slider visualization
                     vm.nutritionSlider[product_i][nut_i] =  {
-                        value: el.value,
+                        value: nut.value,
                         options: {
                             ceil: ceil,
                             floor: floor,
                             showTicks: true,
                             readOnly: true,
-                            step: step,
+                            precision: 1,
+                            step: getTickStep(ceil),
                             translate: function(value, sliderId, label) {
                                 switch (label) {
                                     case 'model':
-                                        return el.displayValue;
+                                        return nut.displayValue;
                                     default:
                                         return value;
                                 }
                             },
                             getTickColor: function (value) {
-                                if (value < 3)
-                                    return 'red';
-                                if (value < 6)
-                                    return 'orange';
-                                if (value < 9)
-                                    return 'yellow';
-                                return '#2AE02A';
+                                if (value >= subcatMin && value <= subcatMax){
+                                    return subcatColor;
+                                }
+                                if (value >= catMin && value <= catMax) {
+                                    return catColor;
+                                }
+                                return 'white';
                             }
                         }
                     };
                 })
             })
-            console.log("vm.nutritionSlider", vm.nutritionSlider);
+        }
+
+        function getTickStep(ceil) {
+            // make the ticks color smooth
+            let step = 1;
+            if (ceil < 5) {
+                step = 0.01;
+            } else if (ceil < 50) {
+                step = 0.1;
+            } else if (ceil < 100) {
+                step = 0.5;
+            }
+
+            return step;
         }
 
         function getNutritionRange(nutrientId) {

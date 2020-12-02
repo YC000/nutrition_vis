@@ -2,7 +2,114 @@
   "category": {
     "categoryName": {
       "categoryName": "",
-      "meta": {}
+      "meta": {"sizes": [
+        {
+          "name": "Tall",
+          "value": 354,
+          "unit": "mL",
+          "nutrition": [
+            {
+              "displayName": "Calories",
+              "minValue": 0,
+              "maxValue": 0
+            },
+            {
+              "displayName": "Fat",
+              "unitOfMeasure": "g",
+              "minValue": 0,
+              "maxValue": 0,
+              "id": "totalFat"
+            },
+            {
+              "displayName": "Saturated",
+              "unitOfMeasure": "g",
+              "value": 9,
+              "dailyPercentValue": 0.45,
+              "id": "saturatedFat",
+              "displayValue": " 9 g",
+              "dailyValue": "45%"
+            },
+            {
+              "displayName": "+ Trans",
+              "unitOfMeasure": "g",
+              "value": 0.4,
+              "dailyPercentValue": null,
+              "id": "transFat",
+              "displayValue": " 0.4 g",
+              "dailyValue": null
+            },
+            {
+              "displayName": "Cholesterol",
+              "unitOfMeasure": "mg",
+              "value": 35,
+              "dailyPercentValue": 0.1167,
+              "id": "cholesterol",
+              "displayValue": " 35 mg",
+              "dailyValue": "12%"
+            },
+            {
+              "displayName": "Sodium",
+              "unitOfMeasure": "mg",
+              "value": 190,
+              "dailyPercentValue": 0.0826,
+              "id": "sodium",
+              "displayValue": " 190 mg",
+              "dailyValue": "8%"
+            },
+            {
+              "displayName": "Carbohydrate",
+              "unitOfMeasure": "g",
+              "value": 36,
+              "dailyPercentValue": 0.1309,
+              "id": "totalCarbs",
+              "displayValue": " 36 g",
+              "dailyValue": "13%"
+            },
+            {
+              "displayName": "Fibre",
+              "unitOfMeasure": "g",
+              "value": 2,
+              "dailyPercentValue": 0.0714,
+              "id": "dietaryFiber",
+              "displayValue": " 2 g",
+              "dailyValue": "7%"
+            },
+            {
+              "displayName": "Sugars",
+              "unitOfMeasure": "g",
+              "value": 33,
+              "dailyPercentValue": null,
+              "id": "sugars",
+              "displayValue": " 33 g",
+              "dailyValue": null
+            },
+            {
+              "displayName": "Protein",
+              "unitOfMeasure": "g",
+              "value": 5,
+              "dailyPercentValue": 0.1,
+              "id": "protein",
+              "displayValue": " 5 g",
+              "dailyValue": "10%"
+            },
+            {
+              "displayName": "Caffeine",
+              "unitOfMeasure": "mg",
+              "value": 10,
+              "dailyPercentValue": null,
+              "maximum": {
+                "displayName": "Caffeine Range",
+                "unitOfMeasure": "mg",
+                "value": 0,
+                "dailyPercentValue": null
+              },
+              "id": "caffeine",
+              "displayValue": " 10 mg",
+              "dailyValue": null
+            }
+          ]
+        }
+      ]}
     },
     "categoryName2": {
       "categoryName": "",

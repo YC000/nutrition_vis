@@ -45,3 +45,11 @@ body {
 .custom-slider.rzslider .rz-bubble {
     bottom: 14px;
 }
+.custom-slider.rzslider .rz-tick {
+    width: 10px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #ffe4d1;
+    top: -1px;
+}

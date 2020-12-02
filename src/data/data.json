@@ -2,7 +2,9 @@
   "category": {
     "Blended Beverages": {
       "categoryName": "Blended Beverages",
-      "meta": {},
+      "meta": {
+        "sizes": []
+      },
       "productCount": 0
     }
   },
@@ -10,13 +12,17 @@
     "Coffee Frappuccino": {
       "subcategoryName": "Coffee Frappuccino",
       "categoryName": "Blended Beverages",
-      "meta": {},
+      "meta": {
+        "sizes": []
+      },
       "productCount": 0
     },
     "Creme Frappuccino": {
       "subcategoryName": "Creme Frappuccino",
       "categoryName": "Blended Beverages",
-      "meta": {},
+      "meta": {
+        "sizes": []
+      },
       "productCount": 0
     }
   },

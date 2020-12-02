@@ -67,9 +67,12 @@
                 <div ng-init="vm.setSlider(product, $index);">
                     <p><b>Product {{$index + 1}} ({{product.productName}})</b> Serving Size:
                         {{vm.sliders[$index].value}} {{product.sizes[0].unit}}</p>
+
+                    <!-- color context for graph -->
                     <span style="color: black;">&#9724; {{product.productName|ellipsis:30}}</span>
-                    <span style="color: transparent; text-shadow: 0 0 0 #0277BD;">&#9724; {{product.categoryName|ellipsis:30}}</span>
-                    <span style="color: transparent; text-shadow: 0 0 0 #29B6F6;">&#9724; {{product.subcategoryName|ellipsis:30}}</span>
+                    <span style="color: transparent; text-shadow: 0 0 0 #0277BD;">&#9724; {{product.subcategoryName|ellipsis:30}}</span>
+                    <span style="color: transparent; text-shadow: 0 0 0 #29B6F6;">&#9724; {{product.categoryName|ellipsis:30}}</span>
+
                     <rzslider style="max-width: 90%" rz-slider-model="vm.sliders[$index].value"
                               rz-slider-options="vm.sliders[$index].options"></rzslider>
                 </div>
