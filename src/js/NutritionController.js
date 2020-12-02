@@ -113,6 +113,7 @@
 
                     // color scale for range
                     // dividing color follows: https://www.canada.ca/en/health-canada/services/understanding-food-labels/percent-daily-value.html
+                    // https://www.sciencedirect.com/science/article/pii/S0749379712003200?via%3Dihub#bib3
                     let [catColor, subcatColor] = getColor('blue');
                     let percent;
 
