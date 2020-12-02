@@ -186,13 +186,13 @@
         function getColor(colorName) {
             switch (colorName) {
                 case 'red':
-                    return ["#EF5350", "#C62828"];
+                    return ["#EF9A9A", "#C62828"];
                 case 'green':
-                    return ["#66BB6A", "#2E7D32"];
+                    return ["#A5D6A7", "#2E7D32"];
                 case 'amber':
-                    return ["#FFCA28", "#FF8F00"];
+                    return ["#FFE082", "#FF8F00"];
                 default:
-                    return ["#29B6F6", "#0277BD"];
+                    return ["#81D4FA", "#0277BD"];
             }
         }
 
