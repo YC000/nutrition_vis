@@ -2707,7 +2707,8 @@
 
         let service= {
             getData: getData,
-
+            getNutritionRange: getNutritionRange,
+            getColorRange: getColorRange
         }
 
         return service;
@@ -2719,6 +2720,56 @@
 
         function getData() {
             return data;
+        }
+
+        function getNutritionRange(nutrientId) {
+            if (!nutrientId) {
+                // assume it to be calories
+                return [0, 2000];
+            }
+
+            switch (nutrientId) {
+                case 'totalFat':
+                    return [0, 65];
+                case "saturatedFat":
+                    return [0, 20];
+                case "transFat":
+                    return [0, 2];
+                case "cholesterol":
+                    return [0, 300];
+                case "sodium":
+                    return [0, 2400];
+                case "totalCarbs":
+                    return [0, 300];
+                case "dietaryFiber":
+                    return [0, 25];
+                case "sugars":
+                    // range: https://www.heartandstroke.ca/healthy-living/healthy-eating/reduce-sugar
+                    return [0, 50];
+                case "protein":
+                    return [0, 50];
+                case "caffeine":
+                    // range: https://www.canada.ca/en/health-canada/services/food-nutrition/food-safety/food-additives/caffeine-foods/foods.html
+                    return [0, 400];
+                case "calories":
+                    // fall-through
+                default:
+                    // assume it to be calories
+                    return [0, 2000];
+            }
+        }
+
+        function getColorRange(colorName) {
+            switch (colorName) {
+                case 'red':
+                    return ["#EF9A9A", "#C62828"];
+                case 'green':
+                    return ["#A5D6A7", "#2E7D32"];
+                case 'amber':
+                    return ["#FFE082", "#FF8F00"];
+                default:
+                    return ["#81D4FA", "#0277BD"];
+            }
         }
 
         /*============================
@@ -2764,6 +2815,8 @@
                             nut["id"] = "calories";
                         }
 
+                        setColor(size_obj, nut, nut_i);
+
                         // find range for category
                         if (!catMetaSizeObj.hasOwnProperty(nut.id)){
                             catMetaSizeObj[nut.id] = {
@@ -2802,6 +2855,45 @@
                     })
                 })
             })
+        }
+
+        function setColor(product_size_obj, nut, nut_i) {
+            // get the max value possible for each nutrient
+            let [floor, ceil] = getNutritionRange(nut.id);
+
+            // set the daily percent value
+            if (nut.id === 'transFat') {
+                // if transFat, use the % for saturated fat because saturated and trans fats are listed together
+                // https://www.canada.ca/en/health-canada/services/nutrients/fats.html
+
+                nut.dailyPercentValue = product_size_obj.nutrition[nut_i-1].dailyPercentValue;
+            } else if (!nut.hasOwnProperty("dailyPercentValue") || nut.dailyPercentValue === null) {
+                nut.dailyPercentValue = nut.value / ceil;
+            }
+
+            // 5% DV or less is a little; 15% DV or more is a lot
+            // dividing color follows: https://www.canada.ca/en/health-canada/services/understanding-food-labels/percent-daily-value.html
+            // https://www.sciencedirect.com/science/article/pii/S0749379712003200?via%3Dihub#bib3
+            if (nut.dailyPercentValue < 0.05) {
+                if (nut.id === 'dietaryFiber' || nut.id === 'protein') {
+                    // bad, i.e. red
+                    nut.percentColor = "#F44336";
+                } else {
+                    // low, i.e. green
+                    nut.percentColor = "#4CAF50";
+                }
+            } else if (nut.dailyPercentValue < 0.15) {
+                // medium, i.e. yellow
+                nut.percentColor = "#FFA000";
+            } else {
+                if (nut.id === 'dietaryFiber' || nut.id === 'protein') {
+                    // good, i.e. green
+                    nut.percentColor = "#4CAF50";
+                } else {
+                    // high, i.e. red
+                    nut.percentColor = "#F44336";
+                }
+            }
         }
     }
 

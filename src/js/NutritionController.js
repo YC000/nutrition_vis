@@ -22,8 +22,9 @@
 
         vm.addProduct = addProduct;
         vm.setSlider = setSlider;
-        vm.setDailyPercent = setDailyPercent;
+        vm.getDailyPercent = getDailyPercent;
         vm.getProductNb = getProductNb;
+        vm.getPercentColor = getPercentColor;
 
         activate();
 
@@ -138,7 +139,7 @@
                     }
 
                     // get the max value possible for each nutrient
-                    let [floor, ceil] = getNutritionRange(nut.id);
+                    let [floor, ceil] = DataFactory.getNutritionRange(nut.id);
 
                     // get category and sub category ranges
                     let catMin = categoryNut[nut.id].minValue;
@@ -147,43 +148,7 @@
                     let subcatMax = subcatNut[nut.id].maxValue;
 
                     // color scale for range
-                    // dividing color follows: https://www.canada.ca/en/health-canada/services/understanding-food-labels/percent-daily-value.html
-                    // https://www.sciencedirect.com/science/article/pii/S0749379712003200?via%3Dihub#bib3
-                    let [catColor, subcatColor] = getColor('blue');
-                    let percent;
-
-                    if (nut.id !== 'calories') {
-
-                        if (nut.id === 'transFat') {
-                            // if transFat, use the % for saturated fat
-                            percent = product.sizeChosen.nutrition[nut_i-1].dailyPercentValue;
-                        } else if (!nut.hasOwnProperty("dailyPercentValue") || nut.dailyPercentValue === null) {
-                            percent = nut.value / ceil;
-                        } else {
-                            percent = nut.dailyPercentValue;
-                        }
-
-                        if (percent < 0.05) {
-                            if (nut.id === 'dietaryFiber' || nut.id === 'protein') {
-                                // bad, i.e. red
-                                [catColor, subcatColor] = getColor('red');
-                            } else {
-                                // low, i.e. green
-                                [catColor, subcatColor] = getColor('green');
-                            }
-                        } else if (percent < 0.15) {
-                            // medium, i.e. yellow
-                            [catColor, subcatColor] = getColor('amber');
-                        } else {
-                            if (nut.id === 'dietaryFiber' || nut.id === 'protein') {
-                                // good, i.e. green
-                                [catColor, subcatColor] = getColor('green');
-                            } else {
-                                // high, i.e. red
-                                [catColor, subcatColor] = getColor('red');
-                            }
-                        }
-                    }
+                    let [catColor, subcatColor] = DataFactory.getColorRange('blue');
 
                     // slider visualization
                     vm.nutritionSlider[product_i][nut_i] =  {
@@ -218,19 +183,6 @@
             })
         }
 
-        function getColor(colorName) {
-            switch (colorName) {
-                case 'red':
-                    return ["#EF9A9A", "#C62828"];
-                case 'green':
-                    return ["#A5D6A7", "#2E7D32"];
-                case 'amber':
-                    return ["#FFE082", "#FF8F00"];
-                default:
-                    return ["#81D4FA", "#0277BD"];
-            }
-        }
-
         function getTickStep(ceil) {
             // make the ticks color smooth
             let step = 1;
@@ -245,48 +197,17 @@
             return step;
         }
 
-        function getNutritionRange(nutrientId) {
-            if (!nutrientId) {
-                // assume it to be calories
-                return [0, 2000];
-            }
-
-            switch (nutrientId) {
-                case 'totalFat':
-                    return [0, 65];
-                case "saturatedFat":
-                    return [0, 20];
-                case "transFat":
-                    return [0, 2];
-                case "cholesterol":
-                    return [0, 300];
-                case "sodium":
-                    return [0, 2400];
-                case "totalCarbs":
-                    return [0, 300];
-                case "dietaryFiber":
-                    return [0, 25];
-                case "sugars":
-                    // range: https://www.heartandstroke.ca/healthy-living/healthy-eating/reduce-sugar
-                    return [0, 50];
-                case "protein":
-                    return [0, 50];
-                case "caffeine":
-                    // range: https://www.canada.ca/en/health-canada/services/food-nutrition/food-safety/food-additives/caffeine-foods/foods.html
-                    return [0, 400];
-                default:
-                    // assume it to be calories
-                    return [0, 2000];
-            }
-        }
-
-        function setDailyPercent(product, nut_i) {
+        function getDailyPercent(product, nut_i) {
             if (product.sizeChosen.nutrition[nut_i].hasOwnProperty('dailyPercentValue')
                 && product.sizeChosen.nutrition[nut_i].dailyPercentValue !== null) {
                 let percent = Math.round(product.sizeChosen.nutrition[nut_i].dailyPercentValue * 100 * 10) / 10
                 return `${percent}%`;
             }
             return "";
+        }
+
+        function getPercentColor(product, nut_i) {
+            return product.sizeChosen.nutrition[nut_i].percentColor;
         }
 
         function getProductNb(product, prod_i) {

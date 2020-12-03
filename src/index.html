@@ -109,7 +109,9 @@
                         </div>
                         <div class="col-sm-1">
                             <br>
-                            <span>{{vm.setDailyPercent(product, $parent.$parent.$index)}}</span>
+                            <span ng-style="{color: vm.getPercentColor(product, $parent.$parent.$index)}">
+                                <b>{{vm.getDailyPercent(product, $parent.$parent.$index)}}</b>
+                            </span>
                         </div>
                     </div>
                     <hr ng-if="nutrient.id !=='saturatedFat'">
