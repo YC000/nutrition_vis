@@ -33,11 +33,20 @@
             <div ng-if="vm.chosenProduct.length > 0;">
                 <div ng-repeat="product in vm.chosenProduct track by $index">
                     <!-- product context -->
-                    <p>{{product.categoryName}}/{{product.subcategoryName}}/{{product.productName}}</p>
+                    <p style="color: dimgray">{{product.categoryName}} / {{product.subcategoryName}} / {{product.productName}}</p>
                     <h2>{{product.productName}}</h2>
                     <p>{{product.description}}</p>
-                    <!-- product image -->
-                    <img ng-src="{{product.imageURI}}" style="max-width:60%;">
+
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <!-- product image -->
+                            <img ng-src="{{product.imageURI}}" style="max-width:100%; align-self: center">
+                        </div>
+                        <div class="col-sm-4" style="align-self: center">
+                            <button type="button" class="button button2" ng-click="vm.removeProduct(product, $index)">Remove Product</button>
+                        </div>
+                    </div>
+
                     <hr>
                 </div>
             </div>
@@ -83,7 +92,7 @@
 
             <!-- nutrition category label -->
             <div class="container-fluid"
-                 ng-if="vm.chosenProduct.length > 0 && vm.isSelectedProd">
+                 ng-if="vm.chosenProduct.length > 0 && vm.isSelectedProd > 0">
                 <div class="row">
                     <div class="col-sm-2">
                     </div>
@@ -118,7 +127,7 @@
                     </div>
                 </div>
 
-                <div ng-if="vm.chosenProduct.length > 0 && vm.isSelectedProd"
+                <div ng-if="vm.chosenProduct.length > 0 && vm.isSelectedProd > 0"
                      style="color:gray; font-size: 14px; text-align: left">
                     <sup>*</sup> The daily recommended value and percentage daily value is the average adult consumption that may not reflect individuals' difference
                 </div>

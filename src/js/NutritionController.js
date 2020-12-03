@@ -18,13 +18,14 @@
         vm.productToAdd = {};
         vm.sliders = [];
         vm.nutritionSlider = [];
-        vm.isSelectedProd = false;
+        vm.isSelectedProd = 0;
 
         vm.addProduct = addProduct;
         vm.setSlider = setSlider;
         vm.getDailyPercent = getDailyPercent;
         vm.getProductNb = getProductNb;
         vm.getPercentColor = getPercentColor;
+        vm.removeProduct = removeProduct;
 
         activate();
 
@@ -46,6 +47,19 @@
                 vm.availableProduct = vm.availableProduct.filter(el => el.productName !== vm.productToAdd.productName);
                 vm.productToAdd = {};
             }
+        }
+
+        function removeProduct(product, chosenProductIdx) {
+            // remove from chosen product
+            vm.chosenProduct.splice(chosenProductIdx, 1);
+            // re-initialize product
+            debugger;
+            product.isSizeSelected = false;
+            vm.isSelectedProd --;
+            product.sizeChosen = {};
+
+            // add into available product
+            vm.availableProduct.push(product);
         }
 
         function setSlider(product, chosenProductIdx) {
