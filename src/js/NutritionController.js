@@ -187,7 +187,7 @@
                             translate: function(value, sliderId, label) {
                                 switch (label) {
                                     case 'model':
-                                        return nut.displayValue;
+                                        return `<b>${nut.displayValue}</b>`;
                                     default:
                                         return value;
                                 }
