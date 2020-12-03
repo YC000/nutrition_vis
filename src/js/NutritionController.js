@@ -75,13 +75,11 @@
                             }
                         }
                         return stepArr.length-1;
+                    },onEnd: function(id) {
+                        setNutritionSize(product, chosenProductIdx);
                     }
                 }
             };
-
-            $scope.$watch(`vm.sliders[${chosenProductIdx}].value`, function (newVal, oldVal) {
-                setNutritionSize(product, chosenProductIdx);
-            })
         }
 
         function setNutritionSize(product, i) {
