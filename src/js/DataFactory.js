@@ -2861,20 +2861,25 @@
             // get the max value possible for each nutrient
             let [floor, ceil] = getNutritionRange(nut.id);
 
+            let percent;
+
             // set the daily percent value
             if (nut.id === 'transFat') {
                 // if transFat, use the % for saturated fat because saturated and trans fats are listed together
                 // https://www.canada.ca/en/health-canada/services/nutrients/fats.html
 
-                nut.dailyPercentValue = product_size_obj.nutrition[nut_i-1].dailyPercentValue;
+                percent = product_size_obj.nutrition[nut_i-1].dailyPercentValue;
             } else if (!nut.hasOwnProperty("dailyPercentValue") || nut.dailyPercentValue === null) {
                 nut.dailyPercentValue = nut.value / ceil;
+                percent = nut.dailyPercentValue;
+            } else {
+                percent = nut.dailyPercentValue;
             }
 
             // 5% DV or less is a little; 15% DV or more is a lot
             // dividing color follows: https://www.canada.ca/en/health-canada/services/understanding-food-labels/percent-daily-value.html
             // https://www.sciencedirect.com/science/article/pii/S0749379712003200?via%3Dihub#bib3
-            if (nut.dailyPercentValue < 0.05) {
+            if (percent < 0.05) {
                 if (nut.id === 'dietaryFiber' || nut.id === 'protein') {
                     // bad, i.e. red
                     nut.percentColor = "#F44336";
@@ -2882,7 +2887,7 @@
                     // low, i.e. green
                     nut.percentColor = "#4CAF50";
                 }
-            } else if (nut.dailyPercentValue < 0.15) {
+            } else if (percent < 0.15) {
                 // medium, i.e. yellow
                 nut.percentColor = "#FFA000";
             } else {

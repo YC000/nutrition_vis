@@ -82,6 +82,9 @@
                         return stepArr.length-1;
                     },onEnd: function(id) {
                         setNutritionSize(product, chosenProductIdx);
+                    },selectionBarGradient: {
+                        from: '#BBDEFB',
+                        to: '#1565C0'
                     }
                 }
             };
