@@ -45,7 +45,7 @@
 
         function setSlider(product, chosenProductIdx) {
             // get stepsArray
-            let stepArr = [];
+            let stepArr = [{value: 0}];
             product.sizes.forEach(size => {
                 stepArr.push({value: size.value, legend: size.name});
             });
@@ -55,7 +55,27 @@
                 options: {
                     showSelectionBar: true,
                     showTicksValues: true,
-                    stepsArray: stepArr
+                    stepsArray: stepArr,
+                    customValueToPosition: function(val, minVal, maxVal) {
+                        val = (stepArr[val].value / stepArr[stepArr.length-1].value);
+                        minVal = (stepArr[minVal].value / stepArr[stepArr.length-1].value);
+                        maxVal = (stepArr[maxVal].value / stepArr[stepArr.length-1].value);
+                        let range = maxVal - minVal;
+                        return (val - minVal) / range;
+                    },
+                    customPositionToValue: function(percent, minVal, maxVal) {
+
+                        let val = percent * stepArr[stepArr.length-1].value;
+                        // get the index of the stepArr from val
+                        for (let i = 1; i < stepArr.length; i++) {
+                            // threshold is in between two lines, to determine which index val belongs to
+                            let threshold = (stepArr[i].value - stepArr[i-1].value) / 2 + stepArr[i-1].value;
+                            if (val < threshold) {
+                                return i-1;
+                            }
+                        }
+                        return stepArr.length-1;
+                    }
                 }
             };
 
@@ -65,6 +85,12 @@
         }
 
         function setNutritionSize(product, i) {
+            if (vm.sliders[i].value === 0) {
+                product.isSizeSelected = false;
+                return;
+            }
+
+            product.isSizeSelected = true;
             let sizeChosen = vm.sliders[i].value;
             product.sizeChosen = {};
 

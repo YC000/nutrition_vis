@@ -82,7 +82,8 @@
             <br>
 
             <!-- nutrition category label -->
-            <div class="container-fluid" ng-if="vm.chosenProduct.length > 0;">
+            <div class="container-fluid"
+                 ng-if="vm.chosenProduct.length > 0 && (vm.chosenProduct.length !== 1 || vm.chosenProduct[0].isSizeSelected)">
                 <div class="row">
                     <div class="col-sm-2">
                     </div>
@@ -96,22 +97,23 @@
 
 
                 <div ng-repeat="nutrient in vm.chosenProduct[0].sizeChosen.nutrition track by $index">
-                    <div class="row" ng-repeat="product in vm.chosenProduct track by $index">
+                    <div class="row" ng-repeat="product in vm.chosenProduct track by $index" ng-if="product.isSizeSelected">
                         <div class="col-sm-2">
                             <span ng-if="$index === 0"><b>{{nutrient.displayName}}</b></span>
                             <br ng-if="$index !== 0">
                             <span style="color: gray;" ng-if="vm.chosenProduct.length > 1">{{product.productName|ellipsis:13}}</span>
                         </div>
                         <div class="col-sm-9">
-                            <rzslider class="custom-slider" rz-slider-model="vm.nutritionSlider[$index][$parent.$index].value"
-                                      rz-slider-options="vm.nutritionSlider[$index][$parent.$index].options"></rzslider>
+                            <rzslider class="custom-slider" rz-slider-model="vm.nutritionSlider[$index][$parent.$parent.$index].value"
+                                      rz-slider-options="vm.nutritionSlider[$index][$parent.$parent.$index].options"></rzslider>
                         </div>
                         <div class="col-sm-1">
                             <br>
-                            <span>{{vm.setDailyPercent(product, $parent.$index)}}</span>
+                            <span>{{vm.setDailyPercent(product, $parent.$parent.$index)}}</span>
                         </div>
                     </div>
                     <hr ng-if="nutrient.id !=='saturatedFat'">
+                    </div>
                 </div>
             </div>
 

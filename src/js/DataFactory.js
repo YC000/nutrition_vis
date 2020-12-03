@@ -2705,6 +2705,8 @@
 
 
         data.products.forEach(product => {
+            setSizeSelectedFlag(product);
+
             if (!product.hasOwnProperty('categoryName') || !data.category.hasOwnProperty(product.categoryName)
                 || !product.hasOwnProperty('subcategoryName') || !data.subcategory.hasOwnProperty(product.subcategoryName)) {
                 return;
@@ -2776,6 +2778,10 @@
         })
 
         return data;
+    }
+
+    function setSizeSelectedFlag(product) {
+        product.isSizeSelected = false;
     }
 
 })();
