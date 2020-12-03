@@ -2703,85 +2703,106 @@
             ]
         };
 
+        setData();
 
-        data.products.forEach(product => {
-            setSizeSelectedFlag(product);
+        let service= {
+            getData: getData,
 
-            if (!product.hasOwnProperty('categoryName') || !data.category.hasOwnProperty(product.categoryName)
-                || !product.hasOwnProperty('subcategoryName') || !data.subcategory.hasOwnProperty(product.subcategoryName)) {
-                return;
-            }
+        }
 
-            product.sizes.forEach((size_obj, size_i) => {
-                if (data.category[product.categoryName].meta.sizes.length <= size_i) {
-                    data.category[product.categoryName].meta.sizes[size_i] = {
-                        "name": size_obj.name,
-                        "value": size_obj.value,
-                        "unit": size_obj.unit
-                    };
+        return service;
+
+        // //////////////
+        /*============================
+         * Public functions
+         *============================*/
+
+        function getData() {
+            return data;
+        }
+
+        /*============================
+         * Private functions
+         *============================*/
+
+        function setSizeSelectedFlag(product) {
+            product.isSizeSelected = false;
+        }
+
+        function setData() {
+            data.products.forEach(product => {
+                setSizeSelectedFlag(product);
+
+                if (!product.hasOwnProperty('categoryName') || !data.category.hasOwnProperty(product.categoryName)
+                    || !product.hasOwnProperty('subcategoryName') || !data.subcategory.hasOwnProperty(product.subcategoryName)) {
+                    return;
                 }
 
-                if (data.subcategory[product.subcategoryName].meta.sizes.length <= size_i) {
-                    data.subcategory[product.subcategoryName].meta.sizes[size_i] = {
-                        "name": size_obj.name,
-                        "value": size_obj.value,
-                        "unit": size_obj.unit
-                    };
-                }
-
-                let catMetaSizeObj = data.category[product.categoryName].meta.sizes[size_i];
-                let subcatMetaSizeObj = data.subcategory[product.subcategoryName].meta.sizes[size_i];
-
-                size_obj.nutrition.forEach((nut, nut_i) => {
-                    if (nut_i === 0) {
-                        // add the id for calories
-                        nut["id"] = "calories";
+                product.sizes.forEach((size_obj, size_i) => {
+                    if (data.category[product.categoryName].meta.sizes.length <= size_i) {
+                        data.category[product.categoryName].meta.sizes[size_i] = {
+                            "name": size_obj.name,
+                            "value": size_obj.value,
+                            "unit": size_obj.unit
+                        };
                     }
 
-                    // find range for category
-                    if (!catMetaSizeObj.hasOwnProperty(nut.id)){
-                        catMetaSizeObj[nut.id] = {
-                            "minValue": nut.value,
-                            "maxValue": nut.value
-                        }
-                    } else {
-                        // find the smallest minValue
-                        if (catMetaSizeObj[nut.id].minValue > nut.value) {
-                            catMetaSizeObj[nut.id].minValue = nut.value;
-                        }
-
-                        // find the largest maxValue
-                        if (catMetaSizeObj[nut.id].maxValue < nut.value) {
-                            catMetaSizeObj[nut.id].maxValue = nut.value;
-                        }
+                    if (data.subcategory[product.subcategoryName].meta.sizes.length <= size_i) {
+                        data.subcategory[product.subcategoryName].meta.sizes[size_i] = {
+                            "name": size_obj.name,
+                            "value": size_obj.value,
+                            "unit": size_obj.unit
+                        };
                     }
 
-                    // find range for sub category
-                    if (!subcatMetaSizeObj.hasOwnProperty(nut.id)){
-                        subcatMetaSizeObj[nut.id] = {
-                            "minValue": nut.value,
-                            "maxValue": nut.value
-                        }
-                    } else {
-                        // find the smallest minValue
-                        if (subcatMetaSizeObj[nut.id].minValue > nut.value) {
-                            subcatMetaSizeObj[nut.id].minValue = nut.value;
+                    let catMetaSizeObj = data.category[product.categoryName].meta.sizes[size_i];
+                    let subcatMetaSizeObj = data.subcategory[product.subcategoryName].meta.sizes[size_i];
+
+                    size_obj.nutrition.forEach((nut, nut_i) => {
+                        if (nut_i === 0) {
+                            // add the id for calories
+                            nut["id"] = "calories";
                         }
 
-                        // find the largest maxValue
-                        if (subcatMetaSizeObj[nut.id].maxValue < nut.value) {
-                            subcatMetaSizeObj[nut.id].maxValue = nut.value;
+                        // find range for category
+                        if (!catMetaSizeObj.hasOwnProperty(nut.id)){
+                            catMetaSizeObj[nut.id] = {
+                                "minValue": nut.value,
+                                "maxValue": nut.value
+                            }
+                        } else {
+                            // find the smallest minValue
+                            if (catMetaSizeObj[nut.id].minValue > nut.value) {
+                                catMetaSizeObj[nut.id].minValue = nut.value;
+                            }
+
+                            // find the largest maxValue
+                            if (catMetaSizeObj[nut.id].maxValue < nut.value) {
+                                catMetaSizeObj[nut.id].maxValue = nut.value;
+                            }
                         }
-                    }
+
+                        // find range for sub category
+                        if (!subcatMetaSizeObj.hasOwnProperty(nut.id)){
+                            subcatMetaSizeObj[nut.id] = {
+                                "minValue": nut.value,
+                                "maxValue": nut.value
+                            }
+                        } else {
+                            // find the smallest minValue
+                            if (subcatMetaSizeObj[nut.id].minValue > nut.value) {
+                                subcatMetaSizeObj[nut.id].minValue = nut.value;
+                            }
+
+                            // find the largest maxValue
+                            if (subcatMetaSizeObj[nut.id].maxValue < nut.value) {
+                                subcatMetaSizeObj[nut.id].maxValue = nut.value;
+                            }
+                        }
+                    })
                 })
             })
-        })
-
-        return data;
-    }
-
-    function setSizeSelectedFlag(product) {
-        product.isSizeSelected = false;
+        }
     }
 
 })();

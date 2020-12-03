@@ -5,17 +5,20 @@
         .module('myapp')
         .controller('NutritionController', NutritionController);
 
-    NutritionController.$inject = ['DataFactory', '$scope'];
+    NutritionController.$inject = ['DataFactory'];
 
     /* @ngInject */
-    function NutritionController(DataFactory, $scope) {
+    function NutritionController(DataFactory) {
         let vm = this;
+        let data = {};
+
         vm.title = 'NutritionController';
         vm.chosenProduct = [];
         vm.availableProduct = [];
         vm.productToAdd = {};
         vm.sliders = [];
         vm.nutritionSlider = [];
+        vm.isSelectedProd = false;
 
         vm.addProduct = addProduct;
         vm.setSlider = setSlider;
@@ -27,12 +30,13 @@
         ////////////////
 
         function activate() {
+            data = DataFactory.getData();
+            console.log(data);
             vm.availableProduct = getAvailableProduct();
-            console.log(DataFactory);
         }
 
         function getAvailableProduct() {
-            return Object.assign([], DataFactory.products);
+            return Object.assign([], data.products);
         }
 
         function addProduct() {
@@ -85,10 +89,12 @@
         function setNutritionSize(product, i) {
             if (vm.sliders[i].value === 0) {
                 product.isSizeSelected = false;
+                vm.isSelectedProd --;
                 return;
             }
 
             product.isSizeSelected = true;
+            vm.isSelectedProd ++;
             let sizeChosen = vm.sliders[i].value;
             product.sizeChosen = {};
 
@@ -103,9 +109,14 @@
 
         function setNutritionSlider() {
             vm.chosenProduct.forEach((product, product_i) => {
+                // skip the product that there is no size specified
+                if (!product.isSizeSelected) {
+                    return;
+                }
+
                 // determine the range of category
                 let categoryNut = {};
-                DataFactory.category[product.categoryName].meta.sizes.forEach(size => {
+                data.category[product.categoryName].meta.sizes.forEach(size => {
                     if (size.value === product.sizeChosen.value) {
                         categoryNut = size;
                     }
@@ -113,7 +124,7 @@
 
                 // determine the range of subCategory
                 let subcatNut = {};
-                DataFactory.subcategory[product.subcategoryName].meta.sizes.forEach(size => {
+                data.subcategory[product.subcategoryName].meta.sizes.forEach(size => {
                     if (size.value === product.sizeChosen.value) {
                         subcatNut = size;
                     }
