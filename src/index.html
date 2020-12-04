@@ -106,7 +106,8 @@
 
 
                 <div ng-repeat="nutrient in vm.chosenProduct[0].sizeChosen.nutrition track by $index">
-                    <div class="row" ng-repeat="product in vm.chosenProduct track by $index" ng-if="product.isSizeSelected">
+                    <div class="row" ng-repeat="product in vm.chosenProduct track by $index"
+                         ng-if="product.isSizeSelected">
                         <div class="col-sm-2">
                             <p style="padding: 0; margin: 0;" ng-if="$index === 0"><b>{{nutrient.displayName}}</b></p>
                             <br ng-if="$index !== 0">
@@ -124,6 +125,7 @@
                         </div>
                     </div>
                     <hr ng-if="nutrient.id !=='saturatedFat'">
+                    <br ng-if="nutrient.id === 'saturatedFat'">
                     </div>
                 </div>
 
