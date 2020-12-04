@@ -108,7 +108,7 @@
                 <div ng-repeat="nutrient in vm.chosenProduct[0].sizeChosen.nutrition track by $index">
                     <div class="row" ng-repeat="product in vm.chosenProduct track by $index" ng-if="product.isSizeSelected">
                         <div class="col-sm-2">
-                            <span ng-if="$index === 0"><b>{{nutrient.displayName}}</b></span>
+                            <p style="padding: 0; margin: 0;" ng-if="$index === 0"><b>{{nutrient.displayName}}</b></p>
                             <br ng-if="$index !== 0">
                             <span style="color: gray;" ng-if="vm.chosenProduct.length > 1">{{product.productName|ellipsis:13}}</span>
                         </div>
