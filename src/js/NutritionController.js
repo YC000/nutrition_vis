@@ -53,7 +53,6 @@
             // remove from chosen product
             vm.chosenProduct.splice(chosenProductIdx, 1);
             // re-initialize product
-            debugger;
             product.isSizeSelected = false;
             vm.isSelectedProd --;
             product.sizeChosen = {};
