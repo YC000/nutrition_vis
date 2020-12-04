@@ -1,9 +1,9 @@
 {
   "categoryName": "Blended Beverages",
-  "subcategoryName": "Coffee Frappuccino",
-  "productName": "Coffee Frappuccino® Blended Beverage",
-  "description": "Coffee meets milk and ice in a blender for a rumble-and-tumble togetherness to create one of our most-beloved original Frappuccino® blended beverages.",
-  "imageURI": "https://globalassets.starbucks.com/assets/2cf55066b3ec4547b452aebffe0870cf.jpg",
+  "subcategoryName": "Creme Frappuccino",
+  "productName": "Chestnut Praline Crème Frappuccino®",
+  "description": "Together these holiday flavours of caramelized chestnuts and spices blended with milk and ice, and then topped with whipped cream and spiced praline crumbs create a joyful world of deliciousness.",
+  "imageURI": "https://globalassets.starbucks.com/assets/f54f3ea0a9184c728e8e2543d621d512.jpg",
   "sizes": [
     {
       "name": "Tall",
@@ -12,61 +12,61 @@
       "nutrition": [
         {
           "displayName": "Calories",
-          "displayValue": " 160 Cals",
-          "value": 160
+          "displayValue": " 230 Cals",
+          "value": 230
         },
         {
           "displayName": "Fat",
           "unitOfMeasure": "g",
-          "value": 2.5,
-          "dailyPercentValue": 0.0321,
+          "value": 11,
+          "dailyPercentValue": 0.141,
           "id": "totalFat",
-          "displayValue": " 2.5 g",
-          "dailyValue": "3%"
+          "displayValue": " 11 g",
+          "dailyValue": "14%"
         },
         {
           "displayName": "Saturated",
           "unitOfMeasure": "g",
-          "value": 1.5,
-          "dailyPercentValue": 0.075,
+          "value": 7,
+          "dailyPercentValue": 0.35,
           "id": "saturatedFat",
-          "displayValue": " 1.5 g",
-          "dailyValue": "7%"
+          "displayValue": " 7 g",
+          "dailyValue": "35%"
         },
         {
           "displayName": "+ Trans",
           "unitOfMeasure": "g",
-          "value": 0.1,
+          "value": 0.4,
           "dailyPercentValue": null,
           "id": "transFat",
-          "displayValue": " 0.1 g",
+          "displayValue": " 0.4 g",
           "dailyValue": null
         },
         {
           "displayName": "Cholesterol",
           "unitOfMeasure": "mg",
-          "value": 10,
-          "dailyPercentValue": 0.0333,
+          "value": 35,
+          "dailyPercentValue": 0.1167,
           "id": "cholesterol",
-          "displayValue": " 10 mg",
-          "dailyValue": "3%"
+          "displayValue": " 35 mg",
+          "dailyValue": "12%"
         },
         {
           "displayName": "Sodium",
           "unitOfMeasure": "mg",
-          "value": 160,
-          "dailyPercentValue": 0.0696,
+          "value": 170,
+          "dailyPercentValue": 0.0739,
           "id": "sodium",
-          "displayValue": " 160 mg",
+          "displayValue": " 170 mg",
           "dailyValue": "7%"
         },
         {
           "displayName": "Carbohydrate",
           "unitOfMeasure": "g",
-          "value": 31,
-          "dailyPercentValue": 0.1127,
+          "value": 30,
+          "dailyPercentValue": 0.1091,
           "id": "totalCarbs",
-          "displayValue": " 31 g",
+          "displayValue": " 30 g",
           "dailyValue": "11%"
         },
         {
@@ -81,25 +81,25 @@
         {
           "displayName": "Sugars",
           "unitOfMeasure": "g",
-          "value": 31,
+          "value": 30,
           "dailyPercentValue": null,
           "id": "sugars",
-          "displayValue": " 31 g",
+          "displayValue": " 30 g",
           "dailyValue": null
         },
         {
           "displayName": "Protein",
           "unitOfMeasure": "g",
-          "value": 3,
-          "dailyPercentValue": 0.06,
+          "value": 4,
+          "dailyPercentValue": 0.08,
           "id": "protein",
-          "displayValue": " 3 g",
-          "dailyValue": "6%"
+          "displayValue": " 4 g",
+          "dailyValue": "8%"
         },
         {
           "displayName": "Caffeine",
           "unitOfMeasure": "mg",
-          "value": 65,
+          "value": 0,
           "dailyPercentValue": null,
           "maximum": {
             "displayName": "Caffeine Range",
@@ -108,7 +108,7 @@
             "dailyPercentValue": null
           },
           "id": "caffeine",
-          "displayValue": " 65 mg",
+          "displayValue": " 0 mg",
           "dailyValue": null
         }
       ]
@@ -120,62 +120,62 @@
       "nutrition": [
         {
           "displayName": "Calories",
-          "displayValue": " 230 Cals",
-          "value": 230
+          "displayValue": " 330 Cals",
+          "value": 330
         },
         {
           "displayName": "Fat",
           "unitOfMeasure": "g",
-          "value": 3,
-          "dailyPercentValue": 0.0385,
+          "value": 15,
+          "dailyPercentValue": 0.1923,
           "id": "totalFat",
-          "displayValue": " 3 g",
-          "dailyValue": "4%"
+          "displayValue": " 15 g",
+          "dailyValue": "19%"
         },
         {
           "displayName": "Saturated",
           "unitOfMeasure": "g",
-          "value": 2,
-          "dailyPercentValue": 0.1,
+          "value": 9,
+          "dailyPercentValue": 0.45,
           "id": "saturatedFat",
-          "displayValue": " 2 g",
-          "dailyValue": "10%"
+          "displayValue": " 9 g",
+          "dailyValue": "45%"
         },
         {
           "displayName": "+ Trans",
           "unitOfMeasure": "g",
-          "value": 0.1,
+          "value": 0.5,
           "dailyPercentValue": null,
           "id": "transFat",
-          "displayValue": " 0.1 g",
+          "displayValue": " 0.5 g",
           "dailyValue": null
         },
         {
           "displayName": "Cholesterol",
           "unitOfMeasure": "mg",
-          "value": 10,
-          "dailyPercentValue": 0.0333,
+          "value": 45,
+          "dailyPercentValue": 0.15,
           "id": "cholesterol",
-          "displayValue": " 10 mg",
-          "dailyValue": "3%"
+          "displayValue": " 45 mg",
+          "dailyValue": "15%"
         },
         {
           "displayName": "Sodium",
           "unitOfMeasure": "mg",
-          "value": 230,
-          "dailyPercentValue": 0.1,
+          "value": 240,
+          "dailyPercentValue": 0.1043,
           "id": "sodium",
-          "displayValue": " 230 mg",
+          "displayValue": " 240 mg",
           "dailyValue": "10%"
         },
         {
           "displayName": "Carbohydrate",
           "unitOfMeasure": "g",
-          "value": 46,
-          "dailyPercentValue": 0.1673,
+          "value": 44,
+          "dailyPercentValue": 0.16,
           "id": "totalCarbs",
-          "displayValue": " 46 g",
-          "dailyValue": "17%"
+          "displayValue": " 44 g",
+          "dailyValue": "16%"
         },
         {
           "displayName": "Fibre",
@@ -189,25 +189,25 @@
         {
           "displayName": "Sugars",
           "unitOfMeasure": "g",
-          "value": 45,
+          "value": 44,
           "dailyPercentValue": null,
           "id": "sugars",
-          "displayValue": " 45 g",
+          "displayValue": " 44 g",
           "dailyValue": null
         },
         {
           "displayName": "Protein",
           "unitOfMeasure": "g",
-          "value": 3,
-          "dailyPercentValue": 0.06,
+          "value": 5,
+          "dailyPercentValue": 0.1,
           "id": "protein",
-          "displayValue": " 3 g",
-          "dailyValue": "6%"
+          "displayValue": " 5 g",
+          "dailyValue": "10%"
         },
         {
           "displayName": "Caffeine",
           "unitOfMeasure": "mg",
-          "value": 95,
+          "value": 0,
           "dailyPercentValue": null,
           "maximum": {
             "displayName": "Caffeine Range",
@@ -216,7 +216,7 @@
             "dailyPercentValue": null
           },
           "id": "caffeine",
-          "displayValue": " 95 mg",
+          "displayValue": " 0 mg",
           "dailyValue": null
         }
       ]
@@ -228,62 +228,62 @@
       "nutrition": [
         {
           "displayName": "Calories",
-          "displayValue": " 310 Cals",
-          "value": 310
+          "displayValue": " 400 Cals",
+          "value": 400
         },
         {
           "displayName": "Fat",
           "unitOfMeasure": "g",
-          "value": 5,
-          "dailyPercentValue": 0.0641,
+          "value": 17,
+          "dailyPercentValue": 0.2179,
           "id": "totalFat",
-          "displayValue": " 5 g",
-          "dailyValue": "6%"
+          "displayValue": " 17 g",
+          "dailyValue": "22%"
         },
         {
           "displayName": "Saturated",
           "unitOfMeasure": "g",
-          "value": 2.5,
-          "dailyPercentValue": 0.125,
+          "value": 11,
+          "dailyPercentValue": 0.55,
           "id": "saturatedFat",
-          "displayValue": " 2.5 g",
-          "dailyValue": "13%"
+          "displayValue": " 11 g",
+          "dailyValue": "55%"
         },
         {
           "displayName": "+ Trans",
           "unitOfMeasure": "g",
-          "value": 0.1,
+          "value": 0.5,
           "dailyPercentValue": null,
           "id": "transFat",
-          "displayValue": " 0.1 g",
+          "displayValue": " 0.5 g",
           "dailyValue": null
         },
         {
           "displayName": "Cholesterol",
           "unitOfMeasure": "mg",
-          "value": 15,
-          "dailyPercentValue": 0.05,
+          "value": 55,
+          "dailyPercentValue": 0.1833,
           "id": "cholesterol",
-          "displayValue": " 15 mg",
-          "dailyValue": "5%"
+          "displayValue": " 55 mg",
+          "dailyValue": "18%"
         },
         {
           "displayName": "Sodium",
           "unitOfMeasure": "mg",
-          "value": 300,
-          "dailyPercentValue": 0.1304,
+          "value": 320,
+          "dailyPercentValue": 0.1391,
           "id": "sodium",
-          "displayValue": " 300 mg",
-          "dailyValue": "13%"
+          "displayValue": " 320 mg",
+          "dailyValue": "14%"
         },
         {
           "displayName": "Carbohydrate",
           "unitOfMeasure": "g",
-          "value": 60,
-          "dailyPercentValue": 0.2182,
+          "value": 55,
+          "dailyPercentValue": 0.2,
           "id": "totalCarbs",
-          "displayValue": " 60 g",
-          "dailyValue": "22%"
+          "displayValue": " 55 g",
+          "dailyValue": "20%"
         },
         {
           "displayName": "Fibre",
@@ -297,25 +297,25 @@
         {
           "displayName": "Sugars",
           "unitOfMeasure": "g",
-          "value": 59,
+          "value": 54,
           "dailyPercentValue": null,
           "id": "sugars",
-          "displayValue": " 59 g",
+          "displayValue": " 54 g",
           "dailyValue": null
         },
         {
           "displayName": "Protein",
           "unitOfMeasure": "g",
-          "value": 5,
-          "dailyPercentValue": 0.1,
+          "value": 7,
+          "dailyPercentValue": 0.14,
           "id": "protein",
-          "displayValue": " 5 g",
-          "dailyValue": "10%"
+          "displayValue": " 7 g",
+          "dailyValue": "14%"
         },
         {
           "displayName": "Caffeine",
           "unitOfMeasure": "mg",
-          "value": 125,
+          "value": 0,
           "dailyPercentValue": null,
           "maximum": {
             "displayName": "Caffeine Range",
@@ -324,7 +324,7 @@
             "dailyPercentValue": null
           },
           "id": "caffeine",
-          "displayValue": " 125 mg",
+          "displayValue": " 0 mg",
           "dailyValue": null
         }
       ]
